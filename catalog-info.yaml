@@ -1,0 +1,161 @@
+# prod
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-johnny-app-prod"
+  description: "sx-cnp-oss-johnny-app-prod"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: http://sx-cnp-oss-johnny-app-prod.demo-ddog.kubrix.cloud
+      title: Prod Instance of sx-cnp-oss-johnny-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-johnny-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=johnny-app-prod'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: johnny-app-prod
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo-ddog.kubrix.cloud/project/sx-cnp-oss-johnny-app-kargo-project"
+    datadoghq.com/dashboard-url: "https://p.datadoghq.eu/sb/d7b204ed-f38f-11ef-9296-be0cc9f2c79c-f9ab3823e95622bf1fd15a84064d187f"
+    datadoghq.com/graph-token: "99ac2d69b58f64bec5174a104add98ca376357cc1f6a7946d9a24310afb8c718"
+spec:
+  type: service
+  lifecycle: prod
+  owner: "sx-cnp-oss"
+  system: johnny-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+  subcomponentOf: sx-cnp-oss-johnny-app
+---
+#qa
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-johnny-app-qa"
+  description: "sx-cnp-oss-johnny-app-qa"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: http://sx-cnp-oss-johnny-app-qa.demo-ddog.kubrix.cloud
+      title: QA Instance of sx-cnp-oss-johnny-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-johnny-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=johnny-app-qa'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: johnny-app-qa
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo-ddog.kubrix.cloud/project/sx-cnp-oss-johnny-app-kargo-project"
+    datadoghq.com/dashboard-url: "https://p.datadoghq.eu/sb/d7b204ed-f38f-11ef-9296-be0cc9f2c79c-f9ab3823e95622bf1fd15a84064d187f"
+    datadoghq.com/graph-token: "99ac2d69b58f64bec5174a104add98ca376357cc1f6a7946d9a24310afb8c718"
+spec:
+  type: service
+  lifecycle: qa
+  owner: "sx-cnp-oss"
+  system: johnny-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+  subcomponentOf: sx-cnp-oss-johnny-app
+---
+# test
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-johnny-app-test"
+  description: "sx-cnp-oss-johnny-app-test"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: http://sx-cnp-oss-johnny-app-test.demo-ddog.kubrix.cloud
+      title: Test Instance of sx-cnp-oss-johnny-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-johnny-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=johnny-app-test'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: johnny-app-test
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo-ddog.kubrix.cloud/project/sx-cnp-oss-johnny-app-kargo-project"
+    datadoghq.com/dashboard-url: "https://p.datadoghq.eu/sb/d7b204ed-f38f-11ef-9296-be0cc9f2c79c-f9ab3823e95622bf1fd15a84064d187f"
+    datadoghq.com/graph-token: "99ac2d69b58f64bec5174a104add98ca376357cc1f6a7946d9a24310afb8c718"
+spec:
+  type: service
+  lifecycle: test
+  owner: "sx-cnp-oss"
+  system: johnny-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+  subcomponentOf: sx-cnp-oss-johnny-app
+---
+# main, at the end of catalog-info.yaml so that register link is on main component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sx-cnp-oss-johnny-app"
+  description: "sx-cnp-oss-johnny-app"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  links:
+    - url: https://argocd.demo-ddog.kubrix.cloud/applications/adn-sx-cnp-oss/sx-cnp-oss-johnny-app?resource=
+      title: ArgoCD Application Information of sx-cnp-oss-johnny-app
+      icon: web
+  annotations:
+    github.com/project-slug: kubriX-demo/sx-cnp-oss-johnny-app
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=sx-cnp-oss-johnny-app'
+    argocd/app-namespace: adn-sx-cnp-oss
+    argocd/app-name: sx-cnp-oss-johnny-app
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.demo-ddog.kubrix.cloud/project/sx-cnp-oss-johnny-app-kargo-project"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "sx-cnp-oss"
+  system: johnny-app
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
+---
